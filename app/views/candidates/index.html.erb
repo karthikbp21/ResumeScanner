@@ -28,6 +28,16 @@
           <%= submit_tag "📄 Scan Resumes with AI", class: "btn btn-success" %>
         <% end %>
 
+        
+        <%#= form_tag upload_resumes_candidates_path, multipart: true, method: :post do %>
+<!--          <div class="mb-2">-->
+<!--            <label>Select Resumes (PDF):</label>-->
+            <%#= file_field_tag "resumes[]", multiple: true, accept: ".pdf", class: "form-control" %>
+<!--          </div>-->
+          <%#= submit_tag "Upload & Scan Resumes", class: "btn btn-success" %>
+        <%# end %>
+
+
         <!-- Download Excel: simple link -->
         <%= link_to '⬇️ Download Excel', download_excel_candidates_path(format: :xlsx), class: "btn btn-outline-secondary" %>
       </div>

@@ -22,6 +22,7 @@ Rails.application.routes.draw do
 
   resources :candidates do
     collection do
+      post :upload_resumes
       post :scan_resumes      # background job trigger
       get  :download_excel    # excel export
       post :query             # GPT prompt search

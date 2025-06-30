@@ -63,4 +63,19 @@ class CandidatesController < ApplicationController
       format.html { render :index }
     end
   end
+
+  def upload_resumes
+    if params[:resumes].present?
+      params[:resumes].each do |uploaded_file|
+        filename = uploaded_file.original_filename
+        save_path = Rails.root.join("storage", "resumes", filename)
+        File.open(save_path, "wb") { |f| f.write(uploaded_file.read) }
+      end
+      ResumeScreeningAgentJob.perform_later
+      flash[:notice] = "Uploaded and scanning resumes..."
+    else
+      flash[:alert] = "Please select at least one PDF file."
+    end
+    redirect_to candidates_path
+  end
 end
