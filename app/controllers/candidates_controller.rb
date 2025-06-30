@@ -5,6 +5,7 @@ class CandidatesController < ApplicationController
   end
 
   def scan_resumes
+    p "Starting resume scanning job..."
     ResumeScreeningAgentJob.perform_later
     redirect_to candidates_path, notice: "Scanning resumes..."
   end
@@ -18,15 +19,48 @@ class CandidatesController < ApplicationController
     end
   end
 
-  def query
-    prompt = params[:prompt]
-    filtered_ids = GPTQueryAgentService.new(prompt).run
+  # def query
+  #   # prompt = params[:prompt]
+  #   # filtered_ids = GptQueryAgentService.new(prompt).run
+  #   #
+  #   # if filtered_ids.blank?
+  #   #   flash[:alert] = "No results found or OpenAI limit reached. Try again later."
+  #   # end
+  #   #
+  #   # @candidates = Candidate.where(id: filtered_ids)
+  #   # render :index
+  #
+  #
+  #   prompt = params[:prompt]
+  #   filtered_ids = GptQueryAgentService.new(prompt).run
+  #   if filtered_ids.blank?
+  #     flash[:alert] = "No results found or OpenAI limit reached. Try again later."
+  #   end
+  #   @candidates = Candidate.where(id: filtered_ids)
+  #
+  #   respond_to do |format|
+  #     format.turbo_stream
+  #     format.html { render :index }
+  #   end
+  # end
 
-    if filtered_ids.blank?
-      flash[:alert] = "No results found or OpenAI limit reached. Try again later."
+  def query
+    prompt = params[:prompt].to_s.strip
+    p "Received query: #{prompt}"
+
+    if prompt.blank?
+      @candidates = Candidate.all
+    else
+      filtered_ids = GptQueryAgentService.new(prompt).run
+      if filtered_ids.blank?
+        flash[:alert] = "No results found or OpenAI limit reached. Try again later."
+      end
+      @candidates = Candidate.where(id: filtered_ids)
     end
 
-    @candidates = Candidate.where(id: filtered_ids)
-    render :index
+    respond_to do |format|
+      format.turbo_stream
+      format.html { render :index }
+    end
   end
 end

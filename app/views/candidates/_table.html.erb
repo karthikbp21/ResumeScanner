@@ -1,0 +1,23 @@
+<table class="table table-hover table-bordered align-middle">
+  <thead class="table-primary">
+  <tr>
+    <th>Name</th>
+    <th>Experience</th>
+    <th>Skills</th>
+    <th>Location</th>
+    <th>Summary</th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <% @candidates.each do |c| %>
+    <tr>
+      <td><%= c.name %></td>
+      <td><%= c.experience_years %> years</td>
+      <td><%= c.skills %></td>
+      <td><%= c.location %></td>
+      <td><%= c.summary&.truncate(100) || "" %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

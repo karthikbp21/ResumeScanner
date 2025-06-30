@@ -2,6 +2,7 @@ class ResumeScreeningAgentJob < ApplicationJob
   queue_as :default
 
   def perform(*args)
+    p "Starting resume screening job..."
     Dir.glob(Rails.root.join("storage/resumes/*.pdf")).each do |resume_path|
       text = extract_text_from_pdf(resume_path)
       CandidateSummaryAgentJob.perform_later(resume_path, text)

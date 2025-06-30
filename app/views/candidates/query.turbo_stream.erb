@@ -1,0 +1,4 @@
+<% puts "RENDERING TURBO STREAM TABLE with #{@candidates.count} candidates" %>
+<%= turbo_stream.replace "candidates_table" do %>
+  <%= render partial: "table", locals: { candidates: @candidates } %>
+<% end %>
