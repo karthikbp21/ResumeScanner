@@ -20,7 +20,12 @@ class CandidatesController < ApplicationController
 
   def query
     prompt = params[:prompt]
-    filtered_ids = GptQueryAgentService.new(prompt).run
+    filtered_ids = GPTQueryAgentService.new(prompt).run
+
+    if filtered_ids.blank?
+      flash[:alert] = "No results found or OpenAI limit reached. Try again later."
+    end
+
     @candidates = Candidate.where(id: filtered_ids)
     render :index
   end
