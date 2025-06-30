@@ -1,0 +1,10 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Candidates") do |sheet|
+  sheet.add_row %w[Name Email Phone Gender Location Experience Education Skills Domain Employer Fit Summary]
+  @candidates.each do |c|
+    sheet.add_row [
+      c.name, c.email, c.phone, c.gender, c.location, c.experience_years, c.education,
+      c.skills, c.domain, c.current_employer, c.fit_rating, c.summary
+    ]
+  end
+end
