@@ -52,10 +52,14 @@ class CandidatesController < ApplicationController
       @candidates = Candidate.all
     else
       filtered_ids = GptQueryAgentService.new(prompt).run
+      p "Filtered IDs returned: #{filtered_ids.inspect}"
       if filtered_ids.blank?
         flash[:alert] = "No results found or OpenAI limit reached. Try again later."
+        @candidates = Candidate.none
+      else
+        @candidates = Candidate.where(id: filtered_ids)
       end
-      @candidates = Candidate.where(id: filtered_ids)
+      p "Final candidates count: #{@candidates.count}"
     end
 
     respond_to do |format|

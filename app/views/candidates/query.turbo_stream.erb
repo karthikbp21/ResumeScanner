@@ -1,4 +1,7 @@
 <% puts "RENDERING TURBO STREAM TABLE with #{@candidates.count} candidates" %>
+<% puts "Candidates IDs: #{@candidates.pluck(:id)}" %>
 <%= turbo_stream.replace "candidates_table" do %>
-  <%= render partial: "table", locals: { candidates: @candidates } %>
+  <div id="candidates_table">
+    <%= render partial: "table", locals: { candidates: @candidates } %>
+  </div>
 <% end %>
