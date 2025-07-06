@@ -4,6 +4,7 @@ class GptQueryAgentService
   end
 
   def run
+    p "Running GPT query with prompt: #{@prompt}"
     all_data = Candidate.all.map(&:attributes).to_json
 
     query = <<~QUERY
@@ -13,7 +14,7 @@ class GptQueryAgentService
       Given this user query: "#{@prompt}", return an array of IDs of matching candidates only.
       Output ONLY a Ruby array of IDs like: [1, 4, 7]
     QUERY
-    ENV['OPENAI_API_KEY'] = "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"
+    ENV['OPENAI_API_KEY'] = "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"
     client = OpenAI::Client.new(access_token: ENV['OPENAI_API_KEY'])
 
     begin

@@ -5,22 +5,22 @@ class GptParserService
 
   def parse
     {
-      name: extract(/Name: (.*)/),
-      email: extract(/Email: (.*)/),
-      phone: extract(/Phone: (.*)/),
-      gender: extract(/Gender: (.*)/),
-      location: extract(/Location: (.*)/),
-      experience_years: extract(/Total experience.*: (\d+)/).to_i,
-      education: extract(/Education: (.*)/),
-      skills: extract(/Skills: (.*)/),
-      domain: extract(/Domain: (.*)/),
-      current_employer: extract(/Employer: (.*)/),
-      fit_rating: extract(/Fit rating: (.*)/),
-      summary: extract(/Summary: (.*)/m)
+      name: extract(/-?\s*Name:\s*(.*)/),
+      email: extract(/-?\s*Email:\s*(.*)/),
+      phone: extract(/-?\s*Phone:\s*(.*)/),
+      gender: extract(/-?\s*Gender:\s*(.*)/),
+      location: extract(/-?\s*Location:\s*(.*)/),
+      experience_years: extract(/-?\s*Total experience.*?:\s*(\d+)/).to_i,
+      education: extract(/-?\s*(Highest education|Education):\s*(.*)/, 2),
+      skills: extract(/-?\s*(Key skills|Skills):\s*(.*)/, 2),
+      domain: extract(/-?\s*(Domain|Domain\/Subject area):\s*(.*)/, 2),
+      current_employer: extract(/-?\s*(Current employer|Employer):\s*(.*)/, 2),
+      fit_rating: extract(/-?\s*Fit rating:\s*(.*)/),
+      summary: extract(/Summary:\s*(.*)/m)
     }
   end
 
-  def extract(regex)
-    @output.match(regex)&.captures&.first&.strip
+  def extract(regex, capture_group = 1)
+    @output.match(regex)&.captures&.[](capture_group - 1)&.strip
   end
 end

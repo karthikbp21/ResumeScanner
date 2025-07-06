@@ -3,7 +3,7 @@ class CandidateSummaryAgentJob < ApplicationJob
 
   def perform(resume_path, text)
     p "Processing resume: #{resume_path}"
-    ENV['OPENAI_API_KEY'] = "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"
+    ENV['OPENAI_API_KEY'] = "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"
     client = OpenAI::Client.new(access_token: ENV['OPENAI_API_KEY'])
 
     prompt = <<~PROMPT
@@ -24,7 +24,7 @@ class CandidateSummaryAgentJob < ApplicationJob
       Resume:
       #{text.truncate(3000)}
     PROMPT
-
+    
     response = client.chat(parameters: {
       model: "gpt-3.5-turbo",
       messages: [
@@ -35,6 +35,7 @@ class CandidateSummaryAgentJob < ApplicationJob
 
     content = response.dig("choices", 0, "message", "content")
     parsed = GptParserService.new(content).parse
+
     p "Parsed candidate data: #{parsed.inspect}"
     Candidate.create!(parsed)
   end

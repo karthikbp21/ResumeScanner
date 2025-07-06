@@ -9,8 +9,8 @@
     <div class="card-body">
       <h3 class="card-title">Job Posting: Assistant Professor of Physics</h3>
       <p><strong>Location:</strong> North America</p>
-      <p><strong>Department:</strong> Natural Sciences</p>
-      <p><strong>Resumes Uploaded:</strong> <%= @resume_count %></p>
+      <p><strong>Department:</strong> We are hiring a full-time Assistant Professor of Physics to join our faculty. The role involves teaching undergraduate/graduate physics courses, conducting research, and mentoring students. A Ph.D. in Physics is required, with a strong commitment to teaching and scholarship.
+        Candidates with a record of research and interest in interdisciplinary collaboration are preferred</p>
     </div>
   </div>
 
@@ -18,32 +18,39 @@
     <div class="card-body">
       <div class="d-flex flex-column gap-3 mt-4">
         <!-- Prompt-based GPT Search -->
-        <%= form_tag query_candidates_path, method: :post, class: "d-flex flex-wrap gap-2" do %>
-          <%= text_area_tag :prompt, params[:prompt], placeholder: "Ask me anything about candidates (e.g., 'less than 5 years of experience')", class: "form-control w-100", rows: 2 %>
-          <%= submit_tag "Search", class: "btn btn-primary" %>
-        <% end %>
+
 
         <!-- Scan Resumes button: own form -->
-        <%= form_tag scan_resumes_candidates_path, method: :post do %>
-          <%= submit_tag "📄 Scan Resumes with AI", class: "btn btn-success" %>
-        <% end %>
-
-        
-        <%#= form_tag upload_resumes_candidates_path, multipart: true, method: :post do %>
-<!--          <div class="mb-2">-->
-<!--            <label>Select Resumes (PDF):</label>-->
-            <%#= file_field_tag "resumes[]", multiple: true, accept: ".pdf", class: "form-control" %>
-<!--          </div>-->
-          <%#= submit_tag "Upload & Scan Resumes", class: "btn btn-success" %>
+        <%#= form_tag scan_resumes_candidates_path, method: :post do %>
+          <%#= submit_tag "📄 Scan Resumes with AI", class: "btn btn-success" %>
         <%# end %>
 
+<!--        uncomment this code when required to pic from local folder-->
+<!--        browsing functionality is not supported by new version of browser for security reasons-->
+        <%= form_tag upload_resumes_candidates_path, multipart: true, method: :post do %>
+          <div class="d-flex align-items-end gap-2">
+            <div class="flex-grow-1">
+              <label>Select Resumes (PDF):</label>
+              <%= file_field_tag "resumes[]", multiple: true, accept: ".pdf", class: "form-control" %>
+            </div>
+            <%= submit_tag "Upload & Scan Resumes", class: "btn btn-success" %>
+          </div>
+        <% end %>
+        <p><strong>Resumes Uploaded:</strong> <%= @resume_count %></p>
 
-        <!-- Download Excel: simple link -->
-        <%= link_to '⬇️ Download Excel', download_excel_candidates_path(format: :xlsx), class: "btn btn-outline-secondary" %>
+        <%= form_tag query_candidates_path, method: :post, class: "d-flex flex-column gap-2" do %>
+          <%= text_area_tag :prompt, params[:prompt], placeholder: "Ask me anything about candidates (e.g., 'less than 5 years of experience')", class: "form-control w-100", rows: 2 %>
+          <div class="d-flex justify-content-end">
+            <%= submit_tag "Search", class: "btn btn-primary" %>
+          </div>
+        <% end %>
       </div>
     </div>
     <div class="card-body">
-      <h4 class="card-title mb-3">Candidates</h4>
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="card-title mb-0">Candidates</h4>
+        <%= link_to '📊 Download Excel', download_excel_candidates_path(format: :xlsx), class: "btn btn-outline-primary" %>
+      </div>
       <!-- table table-bordered table-striped table-hover-->
       <div id="candidates_table">
         <%= render partial: "table", locals: { candidates: @candidates } %>
