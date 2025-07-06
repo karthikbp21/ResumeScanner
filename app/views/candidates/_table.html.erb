@@ -4,8 +4,9 @@
     <th>Name</th>
     <th>Experience</th>
     <th>Skills</th>
-    <th>Rating</th>
-    <th>Summary</th>
+<!--    <th>Rating</th>-->
+<!--    <th>Summary</th>-->
+    <th>Location</th>
   </tr>
   </thead>
   <tbody>
@@ -14,9 +15,46 @@
       <td><%= c.name %></td>
       <td><%= c.experience_years %> years</td>
       <td><%= c.skills %></td>
-      <td><%= c.fit_rating %></td>
-      <td><%= c.summary&.truncate(100) || "" %></td>
+<!--      <td><%#= c.fit_rating %></td>-->
+      <td><%= c.location %></td>
+<!--      <td>-->
+        <%# if c.summary.present? %>
+          <%# if c.summary.length > 100 %>
+            <%# truncated_text = c.summary.truncate(100, omission: '') %>
+<!--            <%#= truncated_text %><span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="<%#= c.summary %>" style="cursor: pointer; color: #0d6efd; text-decoration: underline;">...</span>-->
+          <%# else %>
+            <%#= c.summary %>
+          <%# end %>
+        <%# end %>
+<!--      </td>-->
     </tr>
   <% end %>
   </tbody>
 </table>
+
+<script>
+function initializeTooltips() {
+  // Dispose existing tooltips first
+  document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(function(element) {
+    var existingTooltip = bootstrap.Tooltip.getInstance(element);
+    if (existingTooltip) {
+      existingTooltip.dispose();
+    }
+  });
+
+  // Initialize new tooltips
+  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+  tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+    new bootstrap.Tooltip(tooltipTriggerEl, {
+      html: false,
+      sanitize: true
+    });
+  });
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', initializeTooltips);
+
+// Re-initialize tooltips after turbo stream updates
+document.addEventListener('turbo:render', initializeTooltips);
+</script>
