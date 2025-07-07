@@ -1,0 +1,118 @@
+# HR Candidate Query Prompts - Example Search Queries
+
+# Experience
+Candidates with more than 5 years of experience
+Candidates with at least 10 years of experience
+Candidates with less than 3 years of experience
+Candidates with exactly 7 years of experience
+Candidates with 5 to 10 years of experience
+Candidates with postdoctoral experience
+Candidates with both teaching and research experience
+Candidates who have managed research groups
+Candidates who have supervised Ph.D. students
+Candidates with experience in grant writing
+
+# Skills
+Candidates skilled in Python
+Candidates with skills in Python or R
+Candidates with skills in both Python and Data Analysis
+Candidates with experience in quantum optics
+Candidates with experience in spectroscopy or NMR
+Candidates with strong communication skills
+Candidates with technical and soft skills
+Candidates with proficiency in Chemdraw
+
+# Education
+Candidates with a Ph.D. in Physics
+Candidates with a master's degree in Chemistry
+Candidates with a bachelor's degree from Stanford University
+Candidates who graduated from MIT or Harvard
+Candidates with ongoing education
+Candidates with certifications in Data Science
+
+# Work Experience
+Candidates who have worked at Drexel University
+Candidates who have worked at Stanford or MIT
+Candidates with experience at more than one university
+Candidates with experience in both academia and industry
+Candidates who have held the title of Assistant Professor
+Candidates who have held the title of Research Fellow or Postdoctoral Scholar
+Candidates with experience in remote work
+
+# Location
+Candidates currently located in North America
+Candidates located in India or Europe
+Candidates willing to relocate
+Candidates with remote work experience
+Candidates in Philadelphia, PA
+
+# Fit & Rating
+Candidates rated as "Strong fit"
+Candidates who need review
+Candidates rated as "Not a fit"
+
+# Awards & Achievements
+Candidates who have received NIH or NSF grants
+Candidates with published journal articles
+Candidates who have won teaching awards
+Candidates with more than 10 publications
+
+# Miscellaneous
+Candidates with experience developing new lab modules
+Candidates with experience in curriculum development
+Candidates with experience in interdisciplinary collaboration
+Candidates with both teaching and grant writing experience
+Candidates with experience in both organic and medicinal chemistry
+
+# Boolean/Combinatorial Queries
+Candidates with a PhD in Physics or Chemistry
+Candidates with more than 5 years of experience or who have worked at Stanford
+Candidates skilled in Python or R
+Candidates with a PhD and more than 10 years of experience
+Candidates with experience in quantum optics and spectroscopy
+Candidates with a PhD in Physics and located in North America
+Candidates with a master's degree or certifications in Data Science
+Candidates who have worked at MIT and have more than 5 years of experience
+Candidates with experience in both academia and industry and who are willing to relocate
+Candidates with strong fit rating or who have won teaching awards
+
+# Natural Language
+Show me all candidates with at least 7 years of experience and a PhD
+Find candidates who have worked at Stanford or MIT and have skills in quantum communication
+List candidates with experience in both teaching and research and who are located in Europe
+Show candidates with more than 10 publications or who have received NSF grants
+Find candidates with a strong fit rating and experience in curriculum development
+
+# Edge Cases
+Candidates with no teaching experience
+Candidates with missing email or phone number
+Candidates with ongoing education
+Candidates with multiple current employers
+Candidates with overlapping work experience
+Candidates with experience in both academia and industry
+
+# Advanced
+Candidates who have supervised more than 5 Ph.D. students
+Candidates who have published more than 20 journal articles
+Candidates who have received both NIH and NSF grants
+Candidates who have developed new lab modules and won teaching awards
+Candidates with experience in both organic synthesis and medicinal chemistry
+Candidates with experience in grant writing and curriculum development
+Candidates with experience in quantum optics, spectroscopy, and laser physics
+Candidates with a PhD, more than 10 years of experience, and located in North America
+
+# OR/AND/NOT Examples
+Candidates with a PhD in Physics or Chemistry
+Candidates with more than 5 years of experience and a strong fit rating
+Candidates with a PhD but not located in North America
+Candidates with experience in quantum optics and not in spectroscopy
+Candidates with a master's degree or certifications in Data Science
+Candidates who have worked at MIT and have not worked at Stanford
+
+# Free Text
+Show me candidates who are a strong fit for an Assistant Professor of Physics role
+Find candidates who have experience in both teaching and research, and are willing to relocate
+List all candidates who have published more than 10 articles and have a PhD in Chemistry
+Show candidates who have worked at Drexel University or Stanford and have experience in grant writing
+Find candidates with experience in both academia and industry, and who have won teaching awards
+
