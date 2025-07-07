@@ -1,5 +1,8 @@
 # HR Candidate Query Prompts - Example Search Queries
 
+example based on job title:
+best fit for Assistant Professor of Physics
+
 # Experience
 Candidates with more than 5 years of experience
 Candidates with at least 10 years of experience
