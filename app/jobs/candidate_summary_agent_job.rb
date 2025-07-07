@@ -21,7 +21,8 @@ class CandidateSummaryAgentJob < ApplicationJob
         "domain": "",
         "current_employer": "",
         "fit_rating": "",
-        "summary": ""
+        "summary": "",
+        "work_experience": []
       }
 
       Extraction instructions for each field:
@@ -41,13 +42,21 @@ class CandidateSummaryAgentJob < ApplicationJob
       - "current_employer": Extract the current main employer. If self-employed or freelance, state as such.
       - "fit_rating": Based on the job description, rate the candidate as 'Strong fit', 'Needs review', or 'Not a fit'.
       - "summary": Extract a concise summary of the candidate’s profile, or generate one if not explicitly present.
-      - If the resume does not contain a field, return an empty string.
+      - "work_experience": Extract a detailed, structured list of all work experiences. For each, include:
+        - title/position
+        - employer/organization
+        - location (city, state, country if available)
+        - start date (month and year if available, otherwise year)
+        - end date (month and year if available, otherwise year, or "Present" if ongoing)
+        - a brief description of responsibilities and achievements
+        Return as an array of objects, one per position, in reverse chronological order (most recent first).
+      - If the resume does not contain a field, return an empty string or empty array for that field.
       - Format the response strictly as valid JSON.
 
       Resume:
       #{text.truncate(3000)}
     PROMPT
-    
+
     response = client.chat(parameters: {
       model: "gpt-4", # use gpt-3.5-turbo if needed
       messages: [

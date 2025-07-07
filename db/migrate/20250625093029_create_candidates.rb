@@ -11,6 +11,7 @@ class CreateCandidates < ActiveRecord::Migration[7.2]
       t.text :skills
       t.text :domain
       t.text :current_employer
+      t.text :work_experience
       t.string :fit_rating
       t.text :summary
 

@@ -24,6 +24,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_06_25_093029) do
     t.text "current_employer"
     t.string "fit_rating"
     t.text "summary"
+    t.text "work_experience"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
