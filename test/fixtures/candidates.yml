@@ -6,11 +6,11 @@ one:
   phone: MyString
   gender: MyString
   location: MyString
-  experience_years: 1
-  education: MyString
-  skills: MyString
-  domain: MyString
-  current_employer: MyString
+  experience_years: 1.0
+  education: MyText
+  skills: MyText
+  domain: MyText
+  current_employer: MyText
   fit_rating: MyString
   summary: MyText
 
@@ -20,10 +20,10 @@ two:
   phone: MyString
   gender: MyString
   location: MyString
-  experience_years: 1
-  education: MyString
-  skills: MyString
-  domain: MyString
-  current_employer: MyString
+  experience_years: 1.0
+  education: MyText
+  skills: MyText
+  domain: MyText
+  current_employer: MyText
   fit_rating: MyString
   summary: MyText
