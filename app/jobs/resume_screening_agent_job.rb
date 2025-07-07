@@ -6,6 +6,7 @@ class ResumeScreeningAgentJob < ApplicationJob
     Dir.glob(Rails.root.join("storage/resumes/*.pdf")).each do |resume_path|
       text = extract_text_from_pdf(resume_path)
       CandidateSummaryAgentJob.perform_later(resume_path, text)
+      File.delete(resume_path) if File.exist?(resume_path)
     end
   end
 
