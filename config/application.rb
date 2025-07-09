@@ -17,6 +17,15 @@ module ResumeAiAssistantPoc
     config.autoload_lib(ignore: %w[assets tasks])
     config.active_job.queue_adapter = :sidekiq
 
+    # Enable CORS to allow requests from the React frontend
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins '*' # Replace '*' with the specific domain of your React frontend if needed
+        resource '*',
+                 headers: :any,
+                 methods: [:get, :post, :put, :patch, :delete, :options, :head]
+      end
+    end
 
     # Configuration for the application, engines, and railties goes here.
     #
